@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Band:</strong>
+  <%= @suggestion.band %>
+</p>
+
+<p>
+  <strong>Song:</strong>
+  <%= @suggestion.song %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @suggestion.comment %>
+</p>
+
+<%= link_to 'Edit', edit_suggestion_path(@suggestion) %> |
+<%= link_to 'Back', suggestions_path %>
