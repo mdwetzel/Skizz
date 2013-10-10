@@ -25,6 +25,11 @@ section#suggestion {
 section#suggestions { 
 	width:70%;
 	float:right;
+
+	p { 
+		color:#1435ad;
+		font-size:1.5em;
+	}
 }
 
 div#error_explanation {

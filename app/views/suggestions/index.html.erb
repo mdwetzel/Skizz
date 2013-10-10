@@ -30,11 +30,15 @@
 
 <section id="suggestions">
 <h1>You should listen to...</h1>
+<% if @suggestions.any? %>
 <% @suggestions.each do |suggestion| %>
 <article>
 	<header><%= "#{suggestion.band} - #{suggestion.song}"%></header>
 	<%= suggestion.comment %>
 	<footer><small><%= time_ago_in_words(suggestion.created_at) %> ago</small></footer>
 </article>
+<% end %>
+<% else %>
+<p>Oh, snap! There aren't any suggestions yet. Add one! Be a hero.</p>
 <% end %>
 </section>
