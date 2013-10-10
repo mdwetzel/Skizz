@@ -1,31 +1,40 @@
-<h1>Listing suggestions</h1>
+<section id="suggestion">
+<h1>What's awesome?</h1>
+<%= form_for(@suggestion) do |f| %>
+  <% if @suggestion.errors.any? %>
+    <div id="error_explanation">
+      <h2>Here's where you messed up</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Band</th>
-      <th>Song</th>
-      <th>Comment</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+      <ul>
+      <% @suggestion.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-  <tbody>
-    <% @suggestions.each do |suggestion| %>
-      <tr>
-        <td><%= suggestion.band %></td>
-        <td><%= suggestion.song %></td>
-        <td><%= suggestion.comment %></td>
-        <td><%= link_to 'Show', suggestion %></td>
-        <td><%= link_to 'Edit', edit_suggestion_path(suggestion) %></td>
-        <td><%= link_to 'Destroy', suggestion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="field">
+    <%= f.text_field :band, placeholder: "Band" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :song, placeholder: "Song" %>
+  </div>
+  <div class="field">
+    <%= f.text_area :comment, placeholder: "And why's it so great?" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Suggest!" %>
+  </div>
+<% end %>
+</section>
 
-<br>
-
-<%= link_to 'New Suggestion', new_suggestion_path %>
+<section id="suggestions">
+<h1>You should listen to...</h1>
+<% @suggestions.each do |suggestion| %>
+<article>
+	<header><%= "#{suggestion.band} - #{suggestion.song}"%></header>
+	<%= suggestion.comment %>
+	<footer><small><%= time_ago_in_words(suggestion.created_at) %> ago</small></footer>
+</article>
+<% end %>
+</section>

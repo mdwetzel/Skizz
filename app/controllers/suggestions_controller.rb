@@ -4,7 +4,8 @@ class SuggestionsController < ApplicationController
   # GET /suggestions
   # GET /suggestions.json
   def index
-    @suggestions = Suggestion.all
+    @suggestions = Suggestion.all(order: 'created_at DESC')
+    @suggestion = Suggestion.new
   end
 
   # GET /suggestions/1
@@ -25,14 +26,13 @@ class SuggestionsController < ApplicationController
   # POST /suggestions.json
   def create
     @suggestion = Suggestion.new(suggestion_params)
+    @suggestions = Suggestion.all(order: 'created_at DESC')
 
     respond_to do |format|
       if @suggestion.save
-        format.html { redirect_to @suggestion, notice: 'Suggestion was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @suggestion }
+        format.html { redirect_to root_path, notice: 'Suggestion was successfully created.' }
       else
-        format.html { render action: 'new' }
-        format.json { render json: @suggestion.errors, status: :unprocessable_entity }
+        format.html { render action: 'index' }
       end
     end
   end
