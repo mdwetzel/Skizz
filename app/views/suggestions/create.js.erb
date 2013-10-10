@@ -1,0 +1,6 @@
+<% if @suggestion.errors.any? %>
+
+<% else %>
+	$("<%= escape_javascript(render @suggestion) %>").prependTo("#suggestions div");
+	$("p.none").remove();	
+<% end %>

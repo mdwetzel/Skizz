@@ -70,6 +70,16 @@ article {
 	}		
 }
 
+input[type="submit"] { 
+	background-color:#6E84D6;
+	padding:5px;
+	border-radius:5px;
+	
+	&:hover { 
+		color:#fff;
+	}
+}
+
 input[type="text"], textarea {
 	padding:5px;
 	font-size:1.6em;

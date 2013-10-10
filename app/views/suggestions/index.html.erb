@@ -1,44 +1,17 @@
 <section id="suggestion">
 <h1>What's awesome?</h1>
-<%= form_for(@suggestion) do |f| %>
-  <% if @suggestion.errors.any? %>
-    <div id="error_explanation">
-      <h2>Here's where you messed up</h2>
-
-      <ul>
-      <% @suggestion.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.text_field :band, placeholder: "Band" %>
-  </div>
-  <div class="field">
-    <%= f.text_field :song, placeholder: "Song" %>
-  </div>
-  <div class="field">
-    <%= f.text_area :comment, placeholder: "And why's it so great?" %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Suggest!" %>
-  </div>
-<% end %>
+<%= render 'form' %>
 </section>
 
 <section id="suggestions">
 <h1>You should listen to...</h1>
+<div>
 <% if @suggestions.any? %>
-<% @suggestions.each do |suggestion| %>
-<article>
-	<header><%= "#{suggestion.band} - #{suggestion.song}"%></header>
-	<%= suggestion.comment %>
-	<footer><small><%= time_ago_in_words(suggestion.created_at) %> ago</small></footer>
-</article>
-<% end %>
+
+<%= render @suggestions %>
+
 <% else %>
-<p>Oh, snap! There aren't any suggestions yet. Add one! Be a hero.</p>
+<p class="none">Oh, snap! There aren't any suggestions yet. Add one! Be a hero.</p>
 <% end %>
+</div>
 </section>

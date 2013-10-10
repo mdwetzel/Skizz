@@ -31,8 +31,10 @@ class SuggestionsController < ApplicationController
     respond_to do |format|
       if @suggestion.save
         format.html { redirect_to root_path, notice: 'Suggestion was successfully created.' }
+        format.js
       else
         format.html { render action: 'index' }
+        format.js
       end
     end
   end

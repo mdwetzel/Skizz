@@ -1,0 +1,5 @@
+<article>
+	<header><%= "#{suggestion.band} - #{suggestion.song}"%></header>
+	<%= suggestion.comment %>
+	<footer><small><%= time_ago_in_words(suggestion.created_at) %> ago</small></footer>
+</article>

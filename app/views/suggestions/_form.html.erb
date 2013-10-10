@@ -1,29 +1,17 @@
-<%= form_for(@suggestion) do |f| %>
-  <% if @suggestion.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@suggestion.errors.count, "error") %> prohibited this suggestion from being saved:</h2>
-
-      <ul>
-      <% @suggestion.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for @suggestion, remote: true do |f| %>
+ 
+	<%= render 'errors' %>
 
   <div class="field">
-    <%= f.label :band %><br>
-    <%= f.text_field :band %>
+    <%= f.text_field :band, placeholder: "Band" %>
   </div>
   <div class="field">
-    <%= f.label :song %><br>
-    <%= f.text_field :song %>
+    <%= f.text_field :song, placeholder: "Song" %>
   </div>
   <div class="field">
-    <%= f.label :comment %><br>
-    <%= f.text_area :comment %>
+    <%= f.text_area :comment, placeholder: "And why's it so great?" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Suggest!" %>
   </div>
 <% end %>
